@@ -1,0 +1,8 @@
+FROM spark-base AS spark-leader
+
+# -- Runtime
+
+ARG spark_leader_web_ui=8080
+
+EXPOSE ${spark_leader_web_ui} ${SPARK_LEADER_PORT}
+CMD bin/spark-class org.apache.spark.deploy.master.Master >> logs/spark-leader.out

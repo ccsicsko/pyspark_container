@@ -1,0 +1,8 @@
+FROM spark-base AS spark-worker
+
+# -- Runtime
+
+ARG spark_worker_web_ui=8081
+
+EXPOSE ${spark_worker_web_ui}
+CMD bin/spark-class org.apache.spark.deploy.worker.Worker spark://${SPARK_LEADER_HOST}:${SPARK_LEADER_PORT} >> logs/spark-worker.out
